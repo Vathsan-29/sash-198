@@ -1,0 +1,65 @@
+:root{--g1:#1a0f24;--g2:#4a1f3d;--ink:#fff7f9;--soft:rgba(255,247,249,.72);--gold:#f3d9a4;--dir:0}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;overflow:hidden;background:#1a0f24;color:var(--ink);font-family:'Cormorant Garamond',Georgia,serif;-webkit-tap-highlight-color:transparent}
+body{height:100vh;height:100dvh}
+[hidden]{display:none!important}
+#sky{position:fixed;inset:0;background:radial-gradient(ellipse at 50% 35%,var(--g2),var(--g1) 75%);transition:background 1.2s}
+#hearts{position:fixed;inset:0;overflow:hidden}
+.h{position:absolute;color:#fff;cursor:pointer;line-height:1;padding:14px;text-shadow:0 0 10px #fff,0 0 26px rgba(255,255,255,.6);user-select:none;touch-action:manipulation;will-change:transform}
+.h0{animation:rise var(--t) linear var(--d) infinite;top:100%}
+.h1{animation:fall var(--t) linear var(--d) infinite;top:-12%}
+.h2{animation:swirl var(--t) ease-in-out var(--d) infinite;top:100%}
+.h3{animation:twinkle var(--t) ease-in-out var(--d) infinite}
+@keyframes rise{50%{transform:translate3d(var(--s),-60vh,0) rotate(10deg)}to{transform:translate3d(0,-125vh,0)}}
+@keyframes fall{50%{transform:translate3d(var(--s),60vh,0) rotate(-10deg)}to{transform:translate3d(0,125vh,0)}}
+@keyframes swirl{25%{transform:translate3d(var(--s),-30vh,0) rotate(90deg)}50%{transform:translate3d(calc(var(--s)*-1),-62vh,0) rotate(180deg)}75%{transform:translate3d(var(--s),-95vh,0) rotate(270deg)}to{transform:translate3d(0,-125vh,0) rotate(360deg)}}
+@keyframes twinkle{0%,100%{transform:translate3d(0,0,0) scale(.8);opacity:.35}50%{transform:translate3d(var(--s),-26px,0) scale(1.15);opacity:1}}
+.sp{position:fixed;pointer-events:none;color:#fff;text-shadow:0 0 8px #fff;animation:burst .95s ease-out forwards;z-index:5}
+@keyframes burst{to{transform:translate(var(--dx),var(--dy)) scale(.3) rotate(120deg);opacity:0}}
+section,main{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:max(16px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(16px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));pointer-events:none;z-index:2}
+main{justify-content:space-between}
+main>*,section>*{pointer-events:auto}
+.big{font-size:clamp(5rem,26vw,10rem);color:#fff;cursor:pointer;text-shadow:0 0 24px #fff,0 0 70px rgba(255,200,220,.8);animation:beat 2.6s ease-in-out infinite}
+.pulse{cursor:default}
+@keyframes beat{50%{transform:scale(1.12)}}
+.lead{font-size:clamp(1.7rem,6vw,2.6rem);font-style:italic;margin-top:.6rem}
+.sub{color:var(--soft);font-size:1.15rem;margin-top:.4rem}
+header{width:100%;display:flex;justify-content:space-between}
+button{font:inherit;color:var(--ink);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:.55rem 1.3rem;font-size:1.1rem;cursor:pointer;min-height:44px;backdrop-filter:blur(6px)}
+button:hover{background:rgba(255,255,255,.2)}
+button:focus-visible,input:focus-visible,.big:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+#fav{font-size:1.5rem;padding:.3rem 1rem}#fav.on{color:#ffb3c7}
+#lang{font-size:clamp(1.5rem,5vw,2.3rem);font-style:italic;font-weight:500;letter-spacing:.04em}
+#hint{color:var(--soft);font-size:1.2rem;transition:opacity .8s;min-height:1.6em}
+#nameWrap{animation:floaty 6s ease-in-out infinite;max-width:94vw;min-height:1.2em}
+@keyframes floaty{50%{transform:translateY(-10px)}}
+#name{font-size:clamp(2.6rem,15vw,7.5rem);line-height:1.3;opacity:0;text-shadow:0 0 18px rgba(255,255,255,.7),0 0 50px rgba(255,190,215,.6);overflow-wrap:anywhere;padding:0 .2em}
+#name.show{opacity:1}
+#name.a0{animation:a0 1.8s cubic-bezier(.2,.8,.2,1) both}
+#name.a1{animation:a1 2.4s ease-out both}
+#name.a2{animation:a2 1.9s ease-out both}
+#name.a3{animation:a3 2.2s ease-in-out both}
+#name.a4{animation:a4 2s cubic-bezier(.3,1.2,.4,1) both}
+#name.a5{animation:a5 2.2s ease-out both}
+@keyframes a0{from{opacity:0;transform:translate(var(--ox),var(--oy)) scale(0) rotate(-25deg)}to{opacity:1;transform:none}}
+@keyframes a1{from{opacity:0;filter:blur(30px);transform:translateY(50px);letter-spacing:.4em}to{opacity:1;filter:none;transform:none}}
+@keyframes a2{from{opacity:0;transform:scale(2.2);filter:blur(16px)}to{opacity:1;transform:none;filter:none}}
+@keyframes a3{from{opacity:1;clip-path:inset(-20% 100% -20% 0)}to{opacity:1;clip-path:inset(-20% -10% -20% -10%)}}
+html[dir=rtl] #name.a3{animation-name:a3r}
+@keyframes a3r{from{opacity:1;clip-path:inset(-20% 0 -20% 100%)}to{opacity:1;clip-path:inset(-20% -10% -20% -10%)}}
+@keyframes a4{from{opacity:0;transform:translateY(-140px) rotate(6deg)}to{opacity:1;transform:none}}
+@keyframes a5{0%{opacity:0;filter:blur(20px) brightness(4);transform:scale(1.3)}60%{opacity:1;filter:blur(2px) brightness(1.8)}to{opacity:1;filter:none;transform:none}}
+#meta{color:var(--soft);font-size:1.15rem;opacity:0;transition:opacity 1.5s 1s}
+#line{color:var(--gold);font-style:italic;font-size:clamp(1.15rem,3.6vw,1.5rem);max-width:30ch;opacity:0;transition:opacity 2s 1.6s}
+#meta.on,#line.on{opacity:1}
+nav{display:flex;align-items:center;gap:.9rem;width:100%;max-width:520px;justify-content:space-between}
+nav span{display:flex;flex-direction:column;align-items:center;gap:.2rem}
+#jump{width:4.4rem;text-align:center;font:inherit;font-size:1.1rem;color:var(--ink);background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.5);min-height:36px}
+#count{font-weight:500;font-size:1rem;color:var(--soft)}
+#msg{white-space:pre-line;font-size:clamp(1.2rem,4.2vw,1.8rem);font-style:italic;max-width:34ch;line-height:1.6;margin:1rem 0}
+#final{overflow:auto;justify-content:flex-start;gap:.8rem;padding-top:8vh;pointer-events:auto}
+#final .big{font-size:clamp(4rem,20vw,7rem)}
+#grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:.5rem;width:100%;max-width:760px}
+#grid button{font-size:1.2rem;padding:.4rem;border-radius:14px}
+@media (max-height:560px){#hint{display:none}#name{font-size:clamp(2rem,12vh,5rem)}}
+@media (prefers-reduced-motion:reduce){.h,.big,#nameWrap{animation:none}.h3{opacity:.8}}
